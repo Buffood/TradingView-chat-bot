@@ -341,6 +341,59 @@ namespace TradingView_Chat_Bot
             }
             return false;
         }
+
+        public static async Task<bool> TradingView_VoteForChart(int chartid, string comment, int chartparent)
+        {
+            if (UserLoginCookie == null)
+            {
+                return false;
+            }
+
+            const string FetchURL = "https://www.tradingview.com/postcomment/";
+
+            var handler = new HttpClientHandler();
+            handler.UseCookies = true;
+            AddCookie(handler);
+
+            var req = new HttpClient(handler);
+
+            // Headers
+            AddBasicTradingViewHeader(req);
+
+            // Post
+            string csrfmiddlewaretoken = "";
+            Cookie cookie = handler.CookieContainer.GetCookies(new Uri("https://www.tradingview.com/"))["csrftoken"];
+            if (cookie != null)
+            {
+                csrfmiddlewaretoken = cookie.Value;
+            }
+            else
+                return false;
+
+            string postContent = string.Format("csrfmiddlewaretoken={0}&object_id={1}&comment={2}&parent={3}",
+                csrfmiddlewaretoken, chartid, WebUtility.UrlEncode(comment), chartparent);
+
+            HttpContent hcontent = new StringContent(postContent);
+            hcontent.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
+
+            try
+            {
+                HttpResponseMessage data = await req.PostAsync(FetchURL, hcontent);
+                HttpContent content = data.Content;
+                data.EnsureSuccessStatusCode();
+
+                string ReturnData = await content.ReadAsStringAsync();
+                Debug.WriteLine(ReturnData);
+
+                //{"like_score":1,"dislike_score":0,"result_score":1,"error":""}
+                return true;
+            }
+            catch (Exception eex)
+            {
+                Debug.WriteLine(eex.ToString());
+            }
+            return false;
+        }
     }
 
 }
