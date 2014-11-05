@@ -269,7 +269,7 @@ namespace TradingView_Chat_Bot
                                 registeringEmail =
                                     usernamesPool[r.Next(usernamesPool.Length)] +
                                     usernamesPool[r.Next(usernamesPool.Length)] +
-                                    usernamesPool[r.Next(usernamesPool.Length)];
+                                    usernamesPool[r.Next(usernamesPool.Length)] + emailDomain;
                             }
 
                             bool regSuccessful = false;
@@ -294,9 +294,10 @@ namespace TradingView_Chat_Bot
 
                             if (regSuccessful)
                             {
-                                await file.WriteLineAsync(string.Format("{0} {1}", registeringUsername, registeringEmail));
+                                file.WriteLine(string.Format("{0} {1}", registeringUsername, registeringEmail));
                             }
                         }
+                        file.Close();
                     }
                 });
 
