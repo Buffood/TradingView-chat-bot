@@ -12,6 +12,10 @@ namespace TradingView_Chat_Bot
 {
     public class HttpHelper
     {
+        public static bool EnableProxyRouting = false;
+        public static string ProxyIP = "127.0.0.1";
+        public static int ProxyPort = 9050;
+
         public static CookieContainer UserLoginCookie = null;
 
         private static void AddCookie(HttpClientHandler handler)
@@ -49,6 +53,12 @@ namespace TradingView_Chat_Bot
             const string FetchURL = "https://www.tradingview.com/accounts/signin/";
 
             var handler = new HttpClientHandler();
+            if (EnableProxyRouting)
+            {
+                handler.Proxy = new WebProxy(ProxyIP, ProxyPort);
+                handler.UseProxy = true;
+            }
+
             handler.UseCookies = true;
             AddCookie(handler);
 
@@ -85,6 +95,12 @@ namespace TradingView_Chat_Bot
             const string FetchURL = "https://www.tradingview.com/accounts/signup/";
 
             var handler = new HttpClientHandler();
+            if (EnableProxyRouting)
+            {
+                handler.Proxy = new WebProxy(ProxyIP, ProxyPort);
+                handler.UseProxy = true;
+            }
+
             handler.UseCookies = true;
             AddCookie(handler);
 
@@ -127,6 +143,12 @@ namespace TradingView_Chat_Bot
             const string FetchURL = "https://www.tradingview.com/conversation-post/";
 
             var handler = new HttpClientHandler();
+            if (EnableProxyRouting)
+            {
+                handler.Proxy = new WebProxy(ProxyIP, ProxyPort);
+                handler.UseProxy = true;
+            }
+
             handler.UseCookies = true;
             AddCookie(handler);
 
@@ -180,6 +202,12 @@ namespace TradingView_Chat_Bot
             const string FetchURL = "https://www.tradingview.com/vote-for-comment/";
 
             var handler = new HttpClientHandler();
+            if (EnableProxyRouting)
+            {
+                handler.Proxy = new WebProxy(ProxyIP, ProxyPort);
+                handler.UseProxy = true;
+            }
+
             handler.UseCookies = true;
             AddCookie(handler);
 
@@ -223,6 +251,12 @@ namespace TradingView_Chat_Bot
             const string FetchURL = "https://www.tradingview.com/add-to-favorites/";
 
             var handler = new HttpClientHandler();
+            if (EnableProxyRouting)
+            {
+                handler.Proxy = new WebProxy(ProxyIP, ProxyPort);
+                handler.UseProxy = true;
+            }
+
             handler.UseCookies = true;
             AddCookie(handler);
 
@@ -256,49 +290,6 @@ namespace TradingView_Chat_Bot
             return false;
         }
 
-        public static async Task<bool> TradingView_AddToFavourites(int chartid)
-        {
-            if (UserLoginCookie == null)
-            {
-                return false;
-            }
-
-            const string FetchURL = "https://www.tradingview.com/add-to-favorites/";
-
-            var handler = new HttpClientHandler();
-            handler.UseCookies = true;
-            AddCookie(handler);
-
-            var req = new HttpClient(handler);
-
-            // Headers
-            AddBasicTradingViewHeader(req);
-
-            // Post
-            string postContent = string.Format("id={0}", chartid);
-
-            HttpContent hcontent = new StringContent(postContent);
-            hcontent.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
-
-            try
-            {
-                HttpResponseMessage data = await req.PostAsync(FetchURL, hcontent);
-                HttpContent content = data.Content;
-                data.EnsureSuccessStatusCode();
-
-                string ReturnData = await content.ReadAsStringAsync();
-                Debug.WriteLine(ReturnData);
-
-                //{"followers":1,"error":""}
-                return true;
-            }
-            catch (Exception eex)
-            {
-                Debug.WriteLine(eex.ToString());
-            }
-            return false;
-        }
-
         public static async Task<bool> TradingView_VoteForChart(int chartid, bool vote)
         {
             if (UserLoginCookie == null)
@@ -309,6 +300,12 @@ namespace TradingView_Chat_Bot
             const string FetchURL = "https://www.tradingview.com/vote-for-chart/";
 
             var handler = new HttpClientHandler();
+            if (EnableProxyRouting)
+            {
+                handler.Proxy = new WebProxy(ProxyIP, ProxyPort);
+                handler.UseProxy = true;
+            }
+
             handler.UseCookies = true;
             AddCookie(handler);
 
@@ -352,6 +349,12 @@ namespace TradingView_Chat_Bot
             const string FetchURL = "https://www.tradingview.com/postcomment/";
 
             var handler = new HttpClientHandler();
+            if (EnableProxyRouting)
+            {
+                handler.Proxy = new WebProxy(ProxyIP, ProxyPort);
+                handler.UseProxy = true;
+            }
+
             handler.UseCookies = true;
             AddCookie(handler);
 

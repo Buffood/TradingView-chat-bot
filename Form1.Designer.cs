@@ -32,6 +32,7 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.listBox_chats = new System.Windows.Forms.ListBox();
             this.textBox_delay = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -63,7 +64,12 @@
             this.textBox_pass = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.listBox_chats = new System.Windows.Forms.ListBox();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.textBox_proxy_addr = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.textBox_proxy_port = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.checkBox_proxy = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -71,6 +77,7 @@
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_reg_num)).BeginInit();
+            this.tabPage5.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -105,6 +112,7 @@
             this.tabControl2.Controls.Add(this.tabPage2);
             this.tabControl2.Controls.Add(this.tabPage3);
             this.tabControl2.Controls.Add(this.tabPage4);
+            this.tabControl2.Controls.Add(this.tabPage5);
             this.tabControl2.Location = new System.Drawing.Point(6, 93);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
@@ -127,6 +135,14 @@
             this.tabPage2.TabIndex = 0;
             this.tabPage2.Text = "Chat";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // listBox_chats
+            // 
+            this.listBox_chats.FormattingEnabled = true;
+            this.listBox_chats.Location = new System.Drawing.Point(323, 6);
+            this.listBox_chats.Name = "listBox_chats";
+            this.listBox_chats.Size = new System.Drawing.Size(317, 303);
+            this.listBox_chats.TabIndex = 15;
             // 
             // textBox_delay
             // 
@@ -350,7 +366,7 @@
             // textBox_reg_usernameStart
             // 
             this.textBox_reg_usernameStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_reg_usernameStart.Location = new System.Drawing.Point(131, 12);
+            this.textBox_reg_usernameStart.Location = new System.Drawing.Point(130, 9);
             this.textBox_reg_usernameStart.Name = "textBox_reg_usernameStart";
             this.textBox_reg_usernameStart.Size = new System.Drawing.Size(334, 22);
             this.textBox_reg_usernameStart.TabIndex = 7;
@@ -455,13 +471,68 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Username:";
             // 
-            // listBox_chats
+            // tabPage5
             // 
-            this.listBox_chats.FormattingEnabled = true;
-            this.listBox_chats.Location = new System.Drawing.Point(323, 6);
-            this.listBox_chats.Name = "listBox_chats";
-            this.listBox_chats.Size = new System.Drawing.Size(317, 303);
-            this.listBox_chats.TabIndex = 15;
+            this.tabPage5.Controls.Add(this.checkBox_proxy);
+            this.tabPage5.Controls.Add(this.textBox_proxy_port);
+            this.tabPage5.Controls.Add(this.label12);
+            this.tabPage5.Controls.Add(this.textBox_proxy_addr);
+            this.tabPage5.Controls.Add(this.label10);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Size = new System.Drawing.Size(646, 323);
+            this.tabPage5.TabIndex = 3;
+            this.tabPage5.Text = "HTTP Proxy server";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // textBox_proxy_addr
+            // 
+            this.textBox_proxy_addr.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_proxy_addr.Location = new System.Drawing.Point(132, 14);
+            this.textBox_proxy_addr.Name = "textBox_proxy_addr";
+            this.textBox_proxy_addr.Size = new System.Drawing.Size(334, 22);
+            this.textBox_proxy_addr.TabIndex = 9;
+            this.textBox_proxy_addr.Text = "127.0.0.1";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(10, 17);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(70, 16);
+            this.label10.TabIndex = 8;
+            this.label10.Text = "Address:";
+            // 
+            // textBox_proxy_port
+            // 
+            this.textBox_proxy_port.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_proxy_port.Location = new System.Drawing.Point(132, 42);
+            this.textBox_proxy_port.Name = "textBox_proxy_port";
+            this.textBox_proxy_port.Size = new System.Drawing.Size(334, 22);
+            this.textBox_proxy_port.TabIndex = 11;
+            this.textBox_proxy_port.Text = "9050";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(10, 45);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(40, 16);
+            this.label12.TabIndex = 10;
+            this.label12.Text = "Port:";
+            // 
+            // checkBox_proxy
+            // 
+            this.checkBox_proxy.AutoSize = true;
+            this.checkBox_proxy.Location = new System.Drawing.Point(13, 77);
+            this.checkBox_proxy.Name = "checkBox_proxy";
+            this.checkBox_proxy.Size = new System.Drawing.Size(87, 17);
+            this.checkBox_proxy.TabIndex = 12;
+            this.checkBox_proxy.Text = "Enable proxy";
+            this.checkBox_proxy.UseVisualStyleBackColor = true;
+            this.checkBox_proxy.CheckedChanged += new System.EventHandler(this.checkBox_proxy_CheckedChanged);
             // 
             // Form1
             // 
@@ -483,6 +554,8 @@
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_reg_num)).EndInit();
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -525,6 +598,12 @@
         private System.Windows.Forms.TextBox textBox_reg_usernamePool;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.ListBox listBox_chats;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.TextBox textBox_proxy_addr;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox textBox_proxy_port;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.CheckBox checkBox_proxy;
     }
 }
 

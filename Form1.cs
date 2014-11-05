@@ -332,5 +332,22 @@ namespace TradingView_Chat_Bot
             }
         }
         #endregion
+
+        #region TorProxy
+        private void checkBox_proxy_CheckedChanged(object sender, EventArgs e)
+        {
+            string address = textBox_proxy_addr.Text;
+            int port = 9050;
+            int.TryParse(textBox_proxy_port.Text, out port);
+
+            if (IPAddressHelper.IsIPv4(address) && port > 1 && port < 65500)
+            {
+                HttpHelper.ProxyIP = address;
+                HttpHelper.ProxyPort = port;
+
+                HttpHelper.EnableProxyRouting = checkBox_proxy.Checked == true;
+            }
+        }
+        #endregion
     }
 }
