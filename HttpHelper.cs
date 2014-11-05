@@ -169,5 +169,51 @@ namespace TradingView_Chat_Bot
             }
             return false;
         }
+
+        public static async Task<bool> TradingViewCommentVote(int commentid, bool agree)
+        {
+            if (UserLoginCookie == null)
+            {
+                return false;
+            }
+
+            const string FetchURL = "https://www.tradingview.com/vote-for-comment/";
+
+            var handler = new HttpClientHandler();
+            handler.UseCookies = true;
+            AddCookie(handler);
+
+            var req = new HttpClient(handler);
+
+            // Headers
+            AddBasicTradingViewHeader(req);
+
+            // Post
+            string postContent;
+            postContent = string.Format("id=112873&vote=disagree",
+                commentid, agree ? "agree":"disagree");
+
+            HttpContent hcontent = new StringContent(postContent);
+            hcontent.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
+
+            try
+            {
+                HttpResponseMessage data = await req.PostAsync(FetchURL, hcontent);
+                HttpContent content = data.Content;
+                data.EnsureSuccessStatusCode();
+
+                string ReturnData = await content.ReadAsStringAsync();
+                Debug.WriteLine(ReturnData);
+
+                // {"status":"success","rating":-8}
+                return true;
+            }
+            catch (Exception eex)
+            {
+                Debug.WriteLine(eex.ToString());
+            }
+            return false;
+        }
     }
+
 }
