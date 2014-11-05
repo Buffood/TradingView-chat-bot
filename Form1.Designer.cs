@@ -32,7 +32,6 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.listView_chats = new System.Windows.Forms.ListView();
             this.textBox_delay = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -64,6 +63,7 @@
             this.textBox_pass = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.listBox_chats = new System.Windows.Forms.ListBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -113,7 +113,7 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.listView_chats);
+            this.tabPage2.Controls.Add(this.listBox_chats);
             this.tabPage2.Controls.Add(this.textBox_delay);
             this.tabPage2.Controls.Add(this.label5);
             this.tabPage2.Controls.Add(this.label4);
@@ -127,14 +127,6 @@
             this.tabPage2.TabIndex = 0;
             this.tabPage2.Text = "Chat";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // listView_chats
-            // 
-            this.listView_chats.Location = new System.Drawing.Point(323, 6);
-            this.listView_chats.Name = "listView_chats";
-            this.listView_chats.Size = new System.Drawing.Size(317, 300);
-            this.listView_chats.TabIndex = 14;
-            this.listView_chats.UseCompatibleStateImageBehavior = false;
             // 
             // textBox_delay
             // 
@@ -463,6 +455,14 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Username:";
             // 
+            // listBox_chats
+            // 
+            this.listBox_chats.FormattingEnabled = true;
+            this.listBox_chats.Location = new System.Drawing.Point(323, 6);
+            this.listBox_chats.Name = "listBox_chats";
+            this.listBox_chats.Size = new System.Drawing.Size(317, 303);
+            this.listBox_chats.TabIndex = 15;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -509,7 +509,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBox_retbitbot;
         private System.Windows.Forms.Button button_bitbotSocket;
-        private System.Windows.Forms.ListView listView_chats;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.TextBox textBox_reg_usernameStart;
         private System.Windows.Forms.TextBox textBox_reg_pass;
@@ -525,6 +524,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox textBox_reg_usernamePool;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.ListBox listBox_chats;
     }
 }
 

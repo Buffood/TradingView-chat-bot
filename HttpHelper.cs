@@ -189,9 +189,7 @@ namespace TradingView_Chat_Bot
             AddBasicTradingViewHeader(req);
 
             // Post
-            string postContent;
-            postContent = string.Format("id=112873&vote=disagree",
-                commentid, agree ? "agree":"disagree");
+            string postContent = string.Format("id={0}&vote={1}", commentid, agree ? "agree":"disagree");
 
             HttpContent hcontent = new StringContent(postContent);
             hcontent.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
@@ -206,6 +204,135 @@ namespace TradingView_Chat_Bot
                 Debug.WriteLine(ReturnData);
 
                 // {"status":"success","rating":-8}
+                return true;
+            }
+            catch (Exception eex)
+            {
+                Debug.WriteLine(eex.ToString());
+            }
+            return false;
+        }
+
+        public static async Task<bool> TradingView_AddToFavourites(int commentid)
+        {
+            if (UserLoginCookie == null)
+            {
+                return false;
+            }
+
+            const string FetchURL = "https://www.tradingview.com/add-to-favorites/";
+
+            var handler = new HttpClientHandler();
+            handler.UseCookies = true;
+            AddCookie(handler);
+
+            var req = new HttpClient(handler);
+
+            // Headers
+            AddBasicTradingViewHeader(req);
+
+            // Post
+            string postContent = string.Format("id={0}", commentid);
+
+            HttpContent hcontent = new StringContent(postContent);
+            hcontent.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
+
+            try
+            {
+                HttpResponseMessage data = await req.PostAsync(FetchURL, hcontent);
+                HttpContent content = data.Content;
+                data.EnsureSuccessStatusCode();
+
+                string ReturnData = await content.ReadAsStringAsync();
+                Debug.WriteLine(ReturnData);
+
+                //{"followers":1,"error":""}
+                return true;
+            }
+            catch (Exception eex)
+            {
+                Debug.WriteLine(eex.ToString());
+            }
+            return false;
+        }
+
+        public static async Task<bool> TradingView_AddToFavourites(int chartid)
+        {
+            if (UserLoginCookie == null)
+            {
+                return false;
+            }
+
+            const string FetchURL = "https://www.tradingview.com/add-to-favorites/";
+
+            var handler = new HttpClientHandler();
+            handler.UseCookies = true;
+            AddCookie(handler);
+
+            var req = new HttpClient(handler);
+
+            // Headers
+            AddBasicTradingViewHeader(req);
+
+            // Post
+            string postContent = string.Format("id={0}", chartid);
+
+            HttpContent hcontent = new StringContent(postContent);
+            hcontent.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
+
+            try
+            {
+                HttpResponseMessage data = await req.PostAsync(FetchURL, hcontent);
+                HttpContent content = data.Content;
+                data.EnsureSuccessStatusCode();
+
+                string ReturnData = await content.ReadAsStringAsync();
+                Debug.WriteLine(ReturnData);
+
+                //{"followers":1,"error":""}
+                return true;
+            }
+            catch (Exception eex)
+            {
+                Debug.WriteLine(eex.ToString());
+            }
+            return false;
+        }
+
+        public static async Task<bool> TradingView_VoteForChart(int chartid, bool vote)
+        {
+            if (UserLoginCookie == null)
+            {
+                return false;
+            }
+
+            const string FetchURL = "https://www.tradingview.com/vote-for-chart/";
+
+            var handler = new HttpClientHandler();
+            handler.UseCookies = true;
+            AddCookie(handler);
+
+            var req = new HttpClient(handler);
+
+            // Headers
+            AddBasicTradingViewHeader(req);
+
+            // Post
+            string postContent = string.Format("id={0}&vote={1}", chartid, vote? "true":"false");
+
+            HttpContent hcontent = new StringContent(postContent);
+            hcontent.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
+
+            try
+            {
+                HttpResponseMessage data = await req.PostAsync(FetchURL, hcontent);
+                HttpContent content = data.Content;
+                data.EnsureSuccessStatusCode();
+
+                string ReturnData = await content.ReadAsStringAsync();
+                Debug.WriteLine(ReturnData);
+
+                //{"like_score":1,"dislike_score":0,"result_score":1,"error":""}
                 return true;
             }
             catch (Exception eex)

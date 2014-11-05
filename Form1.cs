@@ -48,39 +48,44 @@ namespace TradingView_Chat_Bot
                 TradingView_Chat_Bot.Json.Json_TradingViewChat.Json_TradingViewChatRootObject classObj =
                     JsonConvert.DeserializeObject<TradingView_Chat_Bot.Json.Json_TradingViewChat.Json_TradingViewChatRootObject>(e.Message);
 
-                if (loginStatus == LoginStatus.LOGGED_IN)
+                string posterUsername = classObj.text.content.data.username;
+                string posterRoom = classObj.text.content.data.room;
+                string posterText = classObj.text.content.data.text;
+
+                if (posterRoom != "bitcoin")
+                    return;
+
+                // Output
+                Action updateItems = () => listBox_chats.Items.Add(string.Format("{0}: {1}", posterUsername, posterText));
+                listBox_chats.BeginInvoke(updateItems);
+
+                // Commands processing
+                if (loginStatus == LoginStatus.LOGGED_IN && posterUsername != "UncleiSheep")
                 {
-                    string posterUsername = classObj.text.content.data.username;
-                    string posterRoom = classObj.text.content.data.room;
-                    string posterText = classObj.text.content.data.text;
-
-                    if (posterUsername != "UncleiSheep" && posterRoom == "bitcoin")
+                    if (posterText.StartsWith("!"))
                     {
-                        if (posterText.StartsWith("!"))
-                        {
-                            string[] commands = posterText.Split(' ');
+                        string[] commands = posterText.Split(' ');
 
-                            switch (commands[0])
-                            {
-                                case "!help":
-                                    {
-                                        await HttpHelper.TradingViewChat("I'm a noob bot, I do not have any functionality yet :D", "ATYOURCOMMAND, IAMASHEEP",
-                                            null, null);
-                                        break;
-                                    }
-                                case "!stamp":
-                                    {
-                                        await HttpHelper.TradingViewChat("STAMPED!", "ATYOURCOMMAND, IAMASHEEP",
-                                            null, null);
-                                        break;
-                                    }
-                            }
-                        }
-                        else
+                        switch (commands[0])
                         {
-                            await HttpHelper.TradingViewChat("Echo: " + posterText, posterUsername,
-                                null, null);
+                            case "!help":
+                                {
+                                    await HttpHelper.TradingViewChat("I'm a noob bot, I do not have any functionality yet :D", "ATYOURCOMMAND, IAMASHEEP",
+                                        null, null);
+                                    break;
+                                }
+                            case "!stamp":
+                                {
+                                    await HttpHelper.TradingViewChat("STAMPED!", "ATYOURCOMMAND, IAMASHEEP",
+                                        null, null);
+                                    break;
+                                }
                         }
+                    }
+                    else
+                    {
+                        await HttpHelper.TradingViewChat("Echo: " + posterText, posterUsername,
+                            null, null);
                     }
                 }
             }
@@ -262,9 +267,9 @@ namespace TradingView_Chat_Bot
                             }
                             else
                             {
-                                registeringUsername = 
-                                    usernamesPool[r.Next(usernamesPool.Length)] + 
-                                    usernamesPool[r.Next(usernamesPool.Length)] + 
+                                registeringUsername =
+                                    usernamesPool[r.Next(usernamesPool.Length)] +
+                                    usernamesPool[r.Next(usernamesPool.Length)] +
                                     usernamesPool[r.Next(usernamesPool.Length)];
                                 registeringEmail =
                                     usernamesPool[r.Next(usernamesPool.Length)] +
