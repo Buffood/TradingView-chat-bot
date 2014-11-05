@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabControl2 = new System.Windows.Forms.TabControl();
@@ -44,6 +43,8 @@
             this.button_bitbotSocket = new System.Windows.Forms.Button();
             this.textBox_retbitbot = new System.Windows.Forms.TextBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.textBox_reg_usernamePool = new System.Windows.Forms.TextBox();
             this.button_reg_generate = new System.Windows.Forms.Button();
             this.label_reg_number = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -63,8 +64,6 @@
             this.textBox_pass = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox_reg_usernamePool = new System.Windows.Forms.TextBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -251,6 +250,27 @@
             this.tabPage4.TabIndex = 2;
             this.tabPage4.Text = "Registration bot";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(11, 40);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(120, 17);
+            this.checkBox1.TabIndex = 17;
+            this.checkBox1.Text = "Use username pool:";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // textBox_reg_usernamePool
+            // 
+            this.textBox_reg_usernamePool.Enabled = false;
+            this.textBox_reg_usernamePool.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_reg_usernamePool.Location = new System.Drawing.Point(11, 61);
+            this.textBox_reg_usernamePool.Multiline = true;
+            this.textBox_reg_usernamePool.Name = "textBox_reg_usernamePool";
+            this.textBox_reg_usernamePool.Size = new System.Drawing.Size(623, 82);
+            this.textBox_reg_usernamePool.TabIndex = 15;
             // 
             // button_reg_generate
             // 
@@ -442,28 +462,6 @@
             this.label1.Size = new System.Drawing.Size(83, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "Username:";
-            // 
-            // textBox_reg_usernamePool
-            // 
-            this.textBox_reg_usernamePool.Enabled = false;
-            this.textBox_reg_usernamePool.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_reg_usernamePool.Location = new System.Drawing.Point(11, 61);
-            this.textBox_reg_usernamePool.Multiline = true;
-            this.textBox_reg_usernamePool.Name = "textBox_reg_usernamePool";
-            this.textBox_reg_usernamePool.Size = new System.Drawing.Size(623, 82);
-            this.textBox_reg_usernamePool.TabIndex = 15;
-            this.textBox_reg_usernamePool.Text = resources.GetString("textBox_reg_usernamePool.Text");
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(11, 40);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(120, 17);
-            this.checkBox1.TabIndex = 17;
-            this.checkBox1.Text = "Use username pool:";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // Form1
             // 

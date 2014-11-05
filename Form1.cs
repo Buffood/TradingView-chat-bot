@@ -31,6 +31,8 @@ namespace TradingView_Chat_Bot
 
         void Form1_Load(object sender, EventArgs e)
         {
+            textBox_reg_usernamePool.Text = Constants.UsernamePool;
+
             // Socket
             socket_TradingView = new SocketHelper();
             socket_TradingView.Changed += socket_TradingView_Changed;

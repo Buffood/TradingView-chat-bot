@@ -28,7 +28,7 @@ C:\Users\z\Desktop\TradingView Chat Bot\bin\Debug\Newtonsoft.Json.xml
 C:\Users\z\Desktop\TradingView Chat Bot\bin\Debug\System.Net.Http.Extensions.xml
 C:\Users\z\Desktop\TradingView Chat Bot\bin\Debug\System.Net.Http.Primitives.xml
 C:\Users\z\Desktop\TradingView Chat Bot\obj\Debug\TradingView Chat Bot.csproj.App.config
-C:\Users\z\Desktop\TradingView Chat Bot\obj\Debug\TradingView Chat Bot.csprojResolveAssemblyReference.cache
 C:\Users\z\Desktop\TradingView Chat Bot\obj\Debug\TradingView_Chat_Bot.Form1.resources
 C:\Users\z\Desktop\TradingView Chat Bot\obj\Debug\TradingView_Chat_Bot.Properties.Resources.resources
 C:\Users\z\Desktop\TradingView Chat Bot\obj\Debug\TradingView Chat Bot.csproj.GenerateResource.Cache
+C:\Users\z\Desktop\TradingView Chat Bot\obj\Debug\TradingView Chat Bot.csprojResolveAssemblyReference.cache
