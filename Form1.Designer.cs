@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabControl2 = new System.Windows.Forms.TabControl();
@@ -42,6 +43,19 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.button_bitbotSocket = new System.Windows.Forms.Button();
             this.textBox_retbitbot = new System.Windows.Forms.TextBox();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.button_reg_generate = new System.Windows.Forms.Button();
+            this.label_reg_number = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.textBox_reg_emailDomain = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.textBox_reg_emailStart = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.numericUpDown_reg_num = new System.Windows.Forms.NumericUpDown();
+            this.textBox_reg_usernameStart = new System.Windows.Forms.TextBox();
+            this.textBox_reg_pass = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.label_status = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.button_login = new System.Windows.Forms.Button();
@@ -49,19 +63,8 @@
             this.textBox_pass = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.textBox_reg_usernameStart = new System.Windows.Forms.TextBox();
-            this.textBox_reg_pass = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.numericUpDown_reg_num = new System.Windows.Forms.NumericUpDown();
-            this.textBox_reg_emailStart = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.textBox_reg_emailDomain = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label_reg_number = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.button_reg_generate = new System.Windows.Forms.Button();
+            this.textBox_reg_usernamePool = new System.Windows.Forms.TextBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabControl2.SuspendLayout();
@@ -226,6 +229,150 @@
             this.textBox_retbitbot.Size = new System.Drawing.Size(634, 210);
             this.textBox_retbitbot.TabIndex = 5;
             // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.checkBox1);
+            this.tabPage4.Controls.Add(this.textBox_reg_usernamePool);
+            this.tabPage4.Controls.Add(this.button_reg_generate);
+            this.tabPage4.Controls.Add(this.label_reg_number);
+            this.tabPage4.Controls.Add(this.label11);
+            this.tabPage4.Controls.Add(this.textBox_reg_emailDomain);
+            this.tabPage4.Controls.Add(this.label9);
+            this.tabPage4.Controls.Add(this.textBox_reg_emailStart);
+            this.tabPage4.Controls.Add(this.label8);
+            this.tabPage4.Controls.Add(this.numericUpDown_reg_num);
+            this.tabPage4.Controls.Add(this.textBox_reg_usernameStart);
+            this.tabPage4.Controls.Add(this.textBox_reg_pass);
+            this.tabPage4.Controls.Add(this.label6);
+            this.tabPage4.Controls.Add(this.label7);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(646, 323);
+            this.tabPage4.TabIndex = 2;
+            this.tabPage4.Text = "Registration bot";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // button_reg_generate
+            // 
+            this.button_reg_generate.BackColor = System.Drawing.Color.Black;
+            this.button_reg_generate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_reg_generate.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.button_reg_generate.Location = new System.Drawing.Point(3, 251);
+            this.button_reg_generate.Name = "button_reg_generate";
+            this.button_reg_generate.Size = new System.Drawing.Size(631, 61);
+            this.button_reg_generate.TabIndex = 11;
+            this.button_reg_generate.Text = "Generate";
+            this.button_reg_generate.UseVisualStyleBackColor = false;
+            this.button_reg_generate.Click += new System.EventHandler(this.button_reg_generate_Click);
+            // 
+            // label_reg_number
+            // 
+            this.label_reg_number.AutoSize = true;
+            this.label_reg_number.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_reg_number.Location = new System.Drawing.Point(605, 228);
+            this.label_reg_number.Name = "label_reg_number";
+            this.label_reg_number.Size = new System.Drawing.Size(18, 20);
+            this.label_reg_number.TabIndex = 14;
+            this.label_reg_number.Text = "0";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(532, 228);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(67, 20);
+            this.label11.TabIndex = 13;
+            this.label11.Text = "Status:";
+            // 
+            // textBox_reg_emailDomain
+            // 
+            this.textBox_reg_emailDomain.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_reg_emailDomain.Location = new System.Drawing.Point(131, 228);
+            this.textBox_reg_emailDomain.Name = "textBox_reg_emailDomain";
+            this.textBox_reg_emailDomain.Size = new System.Drawing.Size(334, 22);
+            this.textBox_reg_emailDomain.TabIndex = 12;
+            this.textBox_reg_emailDomain.Text = "@zmail.com";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(8, 228);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(106, 16);
+            this.label9.TabIndex = 11;
+            this.label9.Text = "Email domain:";
+            // 
+            // textBox_reg_emailStart
+            // 
+            this.textBox_reg_emailStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_reg_emailStart.Location = new System.Drawing.Point(131, 200);
+            this.textBox_reg_emailStart.Name = "textBox_reg_emailStart";
+            this.textBox_reg_emailStart.Size = new System.Drawing.Size(334, 22);
+            this.textBox_reg_emailStart.TabIndex = 10;
+            this.textBox_reg_emailStart.Text = "BuyOnPurpleFgt";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(8, 200);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(85, 16);
+            this.label8.TabIndex = 9;
+            this.label8.Text = "Email start:";
+            // 
+            // numericUpDown_reg_num
+            // 
+            this.numericUpDown_reg_num.Location = new System.Drawing.Point(471, 12);
+            this.numericUpDown_reg_num.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.numericUpDown_reg_num.Name = "numericUpDown_reg_num";
+            this.numericUpDown_reg_num.Size = new System.Drawing.Size(163, 20);
+            this.numericUpDown_reg_num.TabIndex = 8;
+            // 
+            // textBox_reg_usernameStart
+            // 
+            this.textBox_reg_usernameStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_reg_usernameStart.Location = new System.Drawing.Point(131, 12);
+            this.textBox_reg_usernameStart.Name = "textBox_reg_usernameStart";
+            this.textBox_reg_usernameStart.Size = new System.Drawing.Size(334, 22);
+            this.textBox_reg_usernameStart.TabIndex = 7;
+            this.textBox_reg_usernameStart.Text = "BuyOnPurpleFgt";
+            // 
+            // textBox_reg_pass
+            // 
+            this.textBox_reg_pass.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_reg_pass.Location = new System.Drawing.Point(131, 172);
+            this.textBox_reg_pass.Name = "textBox_reg_pass";
+            this.textBox_reg_pass.Size = new System.Drawing.Size(333, 22);
+            this.textBox_reg_pass.TabIndex = 6;
+            this.textBox_reg_pass.Text = "PurpleBarney";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(8, 175);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(80, 16);
+            this.label6.TabIndex = 5;
+            this.label6.Text = "Password:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(8, 12);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(117, 16);
+            this.label7.TabIndex = 4;
+            this.label7.Text = "Username start:";
+            // 
             // label_status
             // 
             this.label_status.AutoSize = true;
@@ -296,144 +443,27 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Username:";
             // 
-            // tabPage4
+            // textBox_reg_usernamePool
             // 
-            this.tabPage4.Controls.Add(this.button_reg_generate);
-            this.tabPage4.Controls.Add(this.label_reg_number);
-            this.tabPage4.Controls.Add(this.label11);
-            this.tabPage4.Controls.Add(this.textBox_reg_emailDomain);
-            this.tabPage4.Controls.Add(this.label9);
-            this.tabPage4.Controls.Add(this.textBox_reg_emailStart);
-            this.tabPage4.Controls.Add(this.label8);
-            this.tabPage4.Controls.Add(this.numericUpDown_reg_num);
-            this.tabPage4.Controls.Add(this.textBox_reg_usernameStart);
-            this.tabPage4.Controls.Add(this.textBox_reg_pass);
-            this.tabPage4.Controls.Add(this.label6);
-            this.tabPage4.Controls.Add(this.label7);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(646, 323);
-            this.tabPage4.TabIndex = 2;
-            this.tabPage4.Text = "Registration bot";
-            this.tabPage4.UseVisualStyleBackColor = true;
+            this.textBox_reg_usernamePool.Enabled = false;
+            this.textBox_reg_usernamePool.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_reg_usernamePool.Location = new System.Drawing.Point(11, 61);
+            this.textBox_reg_usernamePool.Multiline = true;
+            this.textBox_reg_usernamePool.Name = "textBox_reg_usernamePool";
+            this.textBox_reg_usernamePool.Size = new System.Drawing.Size(623, 82);
+            this.textBox_reg_usernamePool.TabIndex = 15;
+            this.textBox_reg_usernamePool.Text = resources.GetString("textBox_reg_usernamePool.Text");
             // 
-            // textBox_reg_usernameStart
+            // checkBox1
             // 
-            this.textBox_reg_usernameStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_reg_usernameStart.Location = new System.Drawing.Point(131, 12);
-            this.textBox_reg_usernameStart.Name = "textBox_reg_usernameStart";
-            this.textBox_reg_usernameStart.Size = new System.Drawing.Size(334, 22);
-            this.textBox_reg_usernameStart.TabIndex = 7;
-            // 
-            // textBox_reg_pass
-            // 
-            this.textBox_reg_pass.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_reg_pass.Location = new System.Drawing.Point(131, 38);
-            this.textBox_reg_pass.Name = "textBox_reg_pass";
-            this.textBox_reg_pass.Size = new System.Drawing.Size(333, 22);
-            this.textBox_reg_pass.TabIndex = 6;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(8, 41);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(80, 16);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "Password:";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(8, 12);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(117, 16);
-            this.label7.TabIndex = 4;
-            this.label7.Text = "Username start:";
-            // 
-            // numericUpDown_reg_num
-            // 
-            this.numericUpDown_reg_num.Location = new System.Drawing.Point(471, 12);
-            this.numericUpDown_reg_num.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.numericUpDown_reg_num.Name = "numericUpDown_reg_num";
-            this.numericUpDown_reg_num.Size = new System.Drawing.Size(163, 20);
-            this.numericUpDown_reg_num.TabIndex = 8;
-            // 
-            // textBox_reg_emailStart
-            // 
-            this.textBox_reg_emailStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_reg_emailStart.Location = new System.Drawing.Point(131, 100);
-            this.textBox_reg_emailStart.Name = "textBox_reg_emailStart";
-            this.textBox_reg_emailStart.Size = new System.Drawing.Size(334, 22);
-            this.textBox_reg_emailStart.TabIndex = 10;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(8, 100);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(85, 16);
-            this.label8.TabIndex = 9;
-            this.label8.Text = "Email start:";
-            // 
-            // textBox_reg_emailDomain
-            // 
-            this.textBox_reg_emailDomain.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_reg_emailDomain.Location = new System.Drawing.Point(131, 128);
-            this.textBox_reg_emailDomain.Name = "textBox_reg_emailDomain";
-            this.textBox_reg_emailDomain.Size = new System.Drawing.Size(334, 22);
-            this.textBox_reg_emailDomain.TabIndex = 12;
-            this.textBox_reg_emailDomain.Text = "@zmail.com";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(8, 128);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(106, 16);
-            this.label9.TabIndex = 11;
-            this.label9.Text = "Email domain:";
-            // 
-            // label_reg_number
-            // 
-            this.label_reg_number.AutoSize = true;
-            this.label_reg_number.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_reg_number.Location = new System.Drawing.Point(532, 228);
-            this.label_reg_number.Name = "label_reg_number";
-            this.label_reg_number.Size = new System.Drawing.Size(18, 20);
-            this.label_reg_number.TabIndex = 14;
-            this.label_reg_number.Text = "0";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(459, 228);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(67, 20);
-            this.label11.TabIndex = 13;
-            this.label11.Text = "Status:";
-            // 
-            // button_reg_generate
-            // 
-            this.button_reg_generate.BackColor = System.Drawing.Color.Black;
-            this.button_reg_generate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_reg_generate.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button_reg_generate.Location = new System.Drawing.Point(3, 251);
-            this.button_reg_generate.Name = "button_reg_generate";
-            this.button_reg_generate.Size = new System.Drawing.Size(631, 61);
-            this.button_reg_generate.TabIndex = 11;
-            this.button_reg_generate.Text = "Generate";
-            this.button_reg_generate.UseVisualStyleBackColor = false;
-            this.button_reg_generate.Click += new System.EventHandler(this.button_reg_generate_Click);
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(11, 40);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(120, 17);
+            this.checkBox1.TabIndex = 17;
+            this.checkBox1.Text = "Use username pool:";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // Form1
             // 
@@ -495,6 +525,8 @@
         private System.Windows.Forms.Button button_reg_generate;
         private System.Windows.Forms.Label label_reg_number;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox textBox_reg_usernamePool;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
 
