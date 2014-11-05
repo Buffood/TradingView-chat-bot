@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,13 +35,15 @@ namespace TradingView_Chat_Bot
             socket_TradingView = new SocketHelper();
             socket_TradingView.Changed += socket_TradingView_Changed;
             socket_TradingView.InitializeTradingViewWebSocket(); // todo: more error checking if this fails
+
+          //  BitbotSocketHelper.Changed += BitbotSocketHelper_Changed;
         }
 
         async void socket_TradingView_Changed(object sender, MessageReceivedEventArgs e)
         {
             try
             {
-                TradingView_Chat_Bot.Json.Json_TradingViewChat.Json_TradingViewChatRootObject classObj = 
+                TradingView_Chat_Bot.Json.Json_TradingViewChat.Json_TradingViewChatRootObject classObj =
                     JsonConvert.DeserializeObject<TradingView_Chat_Bot.Json.Json_TradingViewChat.Json_TradingViewChatRootObject>(e.Message);
 
                 if (loginStatus == LoginStatus.LOGGED_IN)
@@ -55,7 +58,8 @@ namespace TradingView_Chat_Bot
                         {
                             string[] commands = posterText.Split(' ');
 
-                            switch (commands[0]) {
+                            switch (commands[0])
+                            {
                                 case "!help":
                                     {
                                         await HttpHelper.TradingViewChat("I'm a noob bot, I do not have any functionality yet :D", "ATYOURCOMMAND, IAMASHEEP",
@@ -81,6 +85,7 @@ namespace TradingView_Chat_Bot
             catch { }
         }
 
+        #region Login
         private async void button_login_Click(object sender, EventArgs e)
         {
             label_status.Text = "Connecting....";
@@ -125,7 +130,9 @@ namespace TradingView_Chat_Bot
                 HttpHelper.UserLoginCookie = null;
             }
         }
+        #endregion
 
+        #region chat
         /// <summary>
         /// Post conversation
         /// </summary>
@@ -146,29 +153,137 @@ namespace TradingView_Chat_Bot
             short chatdelay = 500;
             Int16.TryParse(textBox_delay.Text, out chatdelay);
 
- 
-                // run in other thread
-                await Task.Run(async () =>
-                {
-                    for (int i = 0; i < lines.Length; i++)
-                    {
-                        await HttpHelper.TradingViewChat(lines[i], symbol,
-                            null, null);//"https://www.tradingview.com/x/QxoU5bTT/s/", "https://www.tradingview.com/x/QxoU5bTT/");
 
-                        await Task.Delay(chatdelay);
-                    }
-                });
+            // run in other thread
+            await Task.Run(async () =>
+            {
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    await HttpHelper.TradingViewChat(lines[i], symbol,
+                        null, null);//"https://www.tradingview.com/x/QxoU5bTT/s/", "https://www.tradingview.com/x/QxoU5bTT/");
+
+                    await Task.Delay(chatdelay);
+                }
+            });
 
             button1.Enabled = true;
         }
+        #endregion
 
+        #region Bitbot
         private void button_bitbotSocket_Click(object sender, EventArgs e)
         {
+            button_bitbotSocket.Enabled = false;
+
+          /*  if (!BitbotSocketHelper.IsConnected())
+            {
+                BitbotSocketHelper.StartClient();
+                button_bitbotSocket.Text = "Disconnect";
+            }
+            else
+            {
+                BitbotSocketHelper.ShutdownSocket();
+                button_bitbotSocket.Text = "Connect";
+            }*/
+
+            button_bitbotSocket.Enabled = true;
 
         }
 
         void BitbotSocketHelper_Changed(string msg)
         {
+      /*      try
+            {
+                JObject obj = JObject.Parse(msg);
+                string type = (string)obj["type"];
+
+                switch (type)
+                {
+                    case "ping":
+                        {
+                            JObject ret = new JObject();
+                            ret.Add("type", "ping");
+
+                            BitbotSocketHelper.Send(ret.ToString().Replace(Environment.NewLine, ""));
+                            break;
+                        }
+                    default:
+                        {
+                            Action updateItems = () => listView_chats.Items.Add(msg);
+                            listView_chats.BeginInvoke(updateItems);
+
+                            break;
+                        }
+                }
+            }
+            catch (Exception exp)
+            {
+                Debug.WriteLine(exp.ToString());
+                Debug.Write(msg);
+            }*/
         }
+        #endregion
+
+        #region AccountGenerator
+        private async void button_reg_generate_Click(object sender, EventArgs e)
+        {
+            string usernameStart = textBox_reg_usernameStart.Text;
+            string password = textBox_reg_pass.Text;
+            string emailStart = textBox_reg_emailStart.Text;
+            string emailDomain = textBox_reg_emailDomain.Text;
+            int numberofAccounts = (int)numericUpDown_reg_num.Value;
+
+            if (numberofAccounts > 0 && password.Length >= 6 && emailDomain.Contains('@'))
+            {
+                button_reg_generate.Enabled = false;
+
+                // run in other thread
+                await Task.Run(async () =>
+                {
+                    int successfulRegistration = 0;
+
+                    using (StreamWriter file = new StreamWriter("SavedAccounts.txt", true))
+                    {
+                        for (int i = 0; i < numberofAccounts; i++)
+                        {
+                            string registeringUsername = usernameStart + i;
+                            string registeringEmail = emailStart + i + emailDomain;
+
+                            bool regSuccessful = false;
+                            try
+                            {
+                                string ret = await HttpHelper.TradingViewSignup(registeringUsername, password,
+                                    registeringEmail);
+
+                                JObject obj = JObject.Parse(ret);
+                                string errors = (string)obj["errors"];
+                                if (errors == string.Empty)
+                                {
+                                    regSuccessful = true;
+                                    successfulRegistration++;
+                                }
+                                // {"message":"Activation key has been sent to 3un21luckyrat@mailinator.com","errors":""}
+                            }
+                            catch { }
+
+                            Action updateItems = () => label_reg_number.Text = i.ToString();
+                            label_reg_number.BeginInvoke(updateItems);
+
+                            if (regSuccessful)
+                            {
+                                await file.WriteLineAsync(string.Format("{0} {1}", registeringUsername, registeringEmail));
+                            }
+                        }
+                    }
+                });
+
+                button_reg_generate.Enabled = true;
+            }
+            else
+            {
+                MessageBox.Show("Invalid input", "Error");
+            }
+        }
+        #endregion
     }
 }

@@ -40,6 +40,8 @@ namespace TradingView_Chat_Bot
             req.DefaultRequestHeaders.Add("X-CSRFToken", "null");
             req.DefaultRequestHeaders.AcceptEncoding.ParseAdd("gzip,deflate");
             req.DefaultRequestHeaders.AcceptLanguage.ParseAdd("en-US,en;q=0.8");
+
+            req.DefaultRequestHeaders.Add("DNT", "1");
         }
 
         public static async Task<string> TradingViewLogin(string username, string password)
@@ -57,6 +59,43 @@ namespace TradingView_Chat_Bot
 
             // Post
             string postContent = string.Format("username={0}&password={1}&remember=on", username, password);
+            HttpContent hcontent = new StringContent(postContent);
+            hcontent.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
+
+            try
+            {
+                HttpResponseMessage data = await req.PostAsync(FetchURL, hcontent);
+                HttpContent content = data.Content;
+                data.EnsureSuccessStatusCode();
+
+                string ReturnData = await content.ReadAsStringAsync();
+                //Debug.WriteLine(ReturnData);
+
+                return ReturnData;
+            }
+            catch (Exception eex)
+            {
+                Debug.WriteLine(eex.ToString());
+            }
+            return null;
+        }
+
+        public static async Task<string> TradingViewSignup(string username, string password, string email)
+        {
+            const string FetchURL = "https://www.tradingview.com/accounts/signup/";
+
+            var handler = new HttpClientHandler();
+            handler.UseCookies = true;
+            AddCookie(handler);
+
+            var req = new HttpClient(handler);
+
+            // Headers
+            AddBasicTradingViewHeader(req);
+
+            // Post
+            string postContent = string.Format("signup_trial=0&email={2}&username={0}&password={1}",
+                WebUtility.UrlEncode(username), WebUtility.UrlEncode(password), WebUtility.UrlEncode(email));
             HttpContent hcontent = new StringContent(postContent);
             hcontent.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
 
