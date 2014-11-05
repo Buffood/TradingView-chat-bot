@@ -36,7 +36,7 @@ namespace TradingView_Chat_Bot
             socket_TradingView.Changed += socket_TradingView_Changed;
             socket_TradingView.InitializeTradingViewWebSocket(); // todo: more error checking if this fails
 
-          //  BitbotSocketHelper.Changed += BitbotSocketHelper_Changed;
+            BitbotSocketHelper.Changed += BitbotSocketHelper_Changed;
         }
 
         async void socket_TradingView_Changed(object sender, MessageReceivedEventArgs e)
@@ -173,9 +173,9 @@ namespace TradingView_Chat_Bot
         #region Bitbot
         private void button_bitbotSocket_Click(object sender, EventArgs e)
         {
-            button_bitbotSocket.Enabled = false;
+            /*button_bitbotSocket.Enabled = false;
 
-          /*  if (!BitbotSocketHelper.IsConnected())
+            if (!BitbotSocketHelper.IsConnected())
             {
                 BitbotSocketHelper.StartClient();
                 button_bitbotSocket.Text = "Disconnect";
@@ -184,15 +184,15 @@ namespace TradingView_Chat_Bot
             {
                 BitbotSocketHelper.ShutdownSocket();
                 button_bitbotSocket.Text = "Connect";
-            }*/
+            }
 
-            button_bitbotSocket.Enabled = true;
+            button_bitbotSocket.Enabled = true;*/
 
         }
 
         void BitbotSocketHelper_Changed(string msg)
         {
-      /*      try
+            /*try
             {
                 JObject obj = JObject.Parse(msg);
                 string type = (string)obj["type"];
@@ -227,7 +227,12 @@ namespace TradingView_Chat_Bot
         #region AccountGenerator
         private async void button_reg_generate_Click(object sender, EventArgs e)
         {
+            bool useUsernamePool = checkBox1.Checked == true;
+
             string usernameStart = textBox_reg_usernameStart.Text;
+            string[] usernamesPool = textBox_reg_usernamePool.Text.Split(' ');
+            Random r = new Random();
+
             string password = textBox_reg_pass.Text;
             string emailStart = textBox_reg_emailStart.Text;
             string emailDomain = textBox_reg_emailDomain.Text;
@@ -246,8 +251,24 @@ namespace TradingView_Chat_Bot
                     {
                         for (int i = 0; i < numberofAccounts; i++)
                         {
-                            string registeringUsername = usernameStart + i;
-                            string registeringEmail = emailStart + i + emailDomain;
+                            string registeringUsername;
+                            string registeringEmail;
+                            if (!useUsernamePool)
+                            {
+                                registeringUsername = usernameStart + i;
+                                registeringEmail = emailStart + i + emailDomain;
+                            }
+                            else
+                            {
+                                registeringUsername = 
+                                    usernamesPool[r.Next(usernamesPool.Length)] + 
+                                    usernamesPool[r.Next(usernamesPool.Length)] + 
+                                    usernamesPool[r.Next(usernamesPool.Length)];
+                                registeringEmail =
+                                    usernamesPool[r.Next(usernamesPool.Length)] +
+                                    usernamesPool[r.Next(usernamesPool.Length)] +
+                                    usernamesPool[r.Next(usernamesPool.Length)];
+                            }
 
                             bool regSuccessful = false;
                             try
@@ -282,6 +303,24 @@ namespace TradingView_Chat_Bot
             else
             {
                 MessageBox.Show("Invalid input", "Error");
+            }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            bool isChecked = checkBox1.Checked == true;
+
+            if (isChecked)
+            {
+                textBox_reg_usernamePool.Enabled = true;
+
+                textBox_reg_usernameStart.Enabled = false;
+            }
+            else
+            {
+                textBox_reg_usernamePool.Enabled = false;
+
+                textBox_reg_usernameStart.Enabled = true;
             }
         }
         #endregion
