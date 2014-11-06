@@ -75,18 +75,18 @@
     <Compile Include="LoginStatus.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ProxySocket\AuthMethod.cs" />
-    <Compile Include="ProxySocket\AuthNone.cs" />
-    <Compile Include="ProxySocket\AuthUserPass.cs" />
-    <Compile Include="ProxySocket\IAsyncProxyResult.cs" />
-    <Compile Include="ProxySocket\ProxyException.cs" />
-    <Compile Include="ProxySocket\ProxySocket.cs" />
-    <Compile Include="ProxySocket\Socks4Handler.cs" />
-    <Compile Include="ProxySocket\Socks5Handler.cs" />
-    <Compile Include="ProxySocket\SocksHandler.cs" />
-    <Compile Include="ProxySocket\TestApp.cs" />
+    <Compile Include="Proxy\AuthMethod.cs" />
+    <Compile Include="Proxy\AuthNone.cs" />
+    <Compile Include="Proxy\AuthUserPass.cs" />
+    <Compile Include="Proxy\IAsyncProxyResult.cs" />
+    <Compile Include="Proxy\ProxyException.cs" />
+    <Compile Include="Proxy\ProxySocket.cs" />
+    <Compile Include="Proxy\Socks4Handler.cs" />
+    <Compile Include="Proxy\Socks5Handler.cs" />
+    <Compile Include="Proxy\SocksHandler.cs" />
+    <Compile Include="Proxy\TestApp.cs" />
     <Compile Include="SocketHelper.cs" />
-    <Compile Include="ProxySocket\Socks5ProxyClient.cs" />
+    <Compile Include="Proxy\Socks5ProxyClient.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -109,8 +109,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="ProxySocket\Org.Mentalis.Network.ProxySocket.ALL.chm" />
-    <None Include="ProxySocket\Org.Mentalis.Network.ProxySocket.PUBLIC.chm" />
+    <None Include="Proxy\Org.Mentalis.Network.ProxySocket.ALL.chm" />
+    <None Include="Proxy\Org.Mentalis.Network.ProxySocket.PUBLIC.chm" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

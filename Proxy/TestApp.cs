@@ -18,7 +18,7 @@ using Org.Mentalis.Network.ProxySocket;
  */
 
 class TestApp {
-	static void Main(string[] args)	{
+/*	static void Main(string[] args)	{
 		// create a new ProxySocket
 		ProxySocket s = new ProxySocket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 		// set the proxy settings
@@ -43,5 +43,5 @@ class TestApp {
 		// wait until the user presses enter
 		Console.WriteLine("Press enter to continue...");
 		Console.ReadLine();
-	}
+	}*/
 }

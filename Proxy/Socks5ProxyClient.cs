@@ -9,9 +9,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace TradingView_Chat_Bot.ProxySocket
+namespace TradingView_Chat_Bot.Proxy
 {
-    class Socks5ProxyStateObject
+    public class Socks5ProxyStateObject
     {
         public Socket worker { get; set; }
         public StringBuilder sb = new StringBuilder();
@@ -19,7 +19,7 @@ namespace TradingView_Chat_Bot.ProxySocket
         public byte[] buffer = new byte[BufferSize];
     }
 
-    class DataEventArgs : EventArgs
+    public class DataEventArgs : EventArgs
     {
         public string Data { get; set; }
 
@@ -41,20 +41,20 @@ namespace TradingView_Chat_Bot.ProxySocket
         ManualResetEvent resetSend = new ManualResetEvent(false);
 
         //On Client Connected
-        public delegate void onClientConnectHandler(object sender, EventArgs e);
-        public event onClientConnectHandler onClientConnect;
+        public delegate void OnClientConnectHandler(object sender, EventArgs e);
+        public event OnClientConnectHandler onClientConnect;
 
         //On Client Disconnected
-        public delegate void onClientDisConnectHandler(object sender, EventArgs e);
-        public event onClientDisConnectHandler onClientDisConnect;
+        public delegate void OnClientDisConnectHandler(object sender, EventArgs e);
+        public event OnClientDisConnectHandler onClientDisConnect;
 
         //On Data received
-        public delegate void onDataReceivedHandler(object sender, DataEventArgs e);
-        public event onDataReceivedHandler onDataReceived;
+        public delegate void OnDataReceivedHandler(object sender, DataEventArgs e);
+        public event OnDataReceivedHandler onDataReceived;
 
         //On Error received
-        public delegate void onErrorHandler(object sender, DataEventArgs e);
-        public event onErrorHandler onError;
+        public delegate void OnErrorHandler(object sender, DataEventArgs e);
+        public event OnErrorHandler onError;
 
         public Socks5ProxyClient(bool useTOR = false)
         {

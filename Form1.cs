@@ -180,7 +180,7 @@ namespace TradingView_Chat_Bot
         #region Bitbot
         private void button_bitbotSocket_Click(object sender, EventArgs e)
         {
-            /*button_bitbotSocket.Enabled = false;
+            button_bitbotSocket.Enabled = false;
 
             if (!BitbotSocketHelper.IsConnected())
             {
@@ -193,13 +193,13 @@ namespace TradingView_Chat_Bot
                 button_bitbotSocket.Text = "Connect";
             }
 
-            button_bitbotSocket.Enabled = true;*/
+            button_bitbotSocket.Enabled = true;
 
         }
 
         void BitbotSocketHelper_Changed(string msg)
         {
-            /*try
+            try
             {
                 JObject obj = JObject.Parse(msg);
                 string type = (string)obj["type"];
@@ -216,8 +216,9 @@ namespace TradingView_Chat_Bot
                         }
                     default:
                         {
-                            Action updateItems = () => listView_chats.Items.Add(msg);
-                            listView_chats.BeginInvoke(updateItems);
+
+                            Action updateItems = () => textBox_retbitbot.Text = textBox_retbitbot.Text + Environment.NewLine + msg;
+                            textBox_retbitbot.BeginInvoke(updateItems);
 
                             break;
                         }
@@ -227,7 +228,7 @@ namespace TradingView_Chat_Bot
             {
                 Debug.WriteLine(exp.ToString());
                 Debug.Write(msg);
-            }*/
+            }
         }
         #endregion
 
